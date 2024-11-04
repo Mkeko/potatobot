@@ -501,7 +501,7 @@ class Fun(commands.Cog, name="🎉 Fun"):
         async def hug(self, context: Context) -> None:
             async with aiohttp.ClientSession() as session:
                 data = await session.get(
-                    "https://some-random-api.com/animu/hug"
+                    "https://api.any-bot.xyz/api/v1/hug"
                 )
     
                 data = await data.json()
