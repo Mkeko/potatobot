@@ -483,23 +483,16 @@ class Fun(commands.Cog, name="🎉 Fun"):
         await context.send(embed=embed)
 
     @random.command(
-        name="boykisser",
-        description="Get a random boykisser image",
-        usage="boykisser"
-    )
-    @commands.check(Checks.is_not_blacklisted)   
-    
-        @random.command(
             name="hug",
             description="Get a random hug gif",
             usage="random hug"
         )
-        @commands.check(Checks.is_not_blacklisted)
-        @commands.check(Checks.command_not_disabled)
-        @app_commands.allowed_installs(guilds=True, users=True)
-        @app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
-        async def hug(self, context: Context) -> None:
-            async with aiohttp.ClientSession() as session:
+    @commands.check(Checks.is_not_blacklisted)
+    @commands.check(Checks.command_not_disabled)
+    @app_commands.allowed_installs(guilds=True, users=True)
+    @app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
+    async def hug(self, context: Context) -> None:
+        async with aiohttp.ClientSession() as session:
                 data = await session.get(
                     "https://api.any-bot.xyz/api/v1/hug"
                 )
@@ -507,7 +500,14 @@ class Fun(commands.Cog, name="🎉 Fun"):
                 data = await data.json()
     
                 await context.send(data['link'])
-    
+
+
+    @random.command(
+        name="boykisser",
+        description="Get a random boykisser image",
+        usage="boykisser"
+    )
+    @commands.check(Checks.is_not_blacklisted)   
     @commands.check(Checks.command_not_disabled)
     @app_commands.allowed_installs(guilds=True, users=True)
     @app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
